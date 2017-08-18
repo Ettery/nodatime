@@ -13,7 +13,9 @@ namespace NodaTime.Test
     {
         public static void Main(string[] args)
         {
-            var zones = DateTimeZoneProviders.Tzdb.GetAllZones().Select(Uncache).ToList();
+            var zones = DateTimeZoneProviders.Tzdb.GetAllZones()
+                .Select(zone => zone is CachedDateTimeZone cached ? cached.TimeZone : zone)
+                .ToList();
             var start = Instant.FromUtc(2000, 1, 1, 0, 0);
             var gap = Duration.FromDays(1);
             var instants = Enumerable
@@ -32,8 +34,5 @@ namespace NodaTime.Test
             stopwatch.Stop();
             Console.WriteLine($"Elapsed time: {stopwatch.Elapsed}");
         }
-        
-        private static DateTimeZone Uncache(DateTimeZone zone) =>
-            zone is CachedDateTimeZone cached ? cached.TimeZone : zone;
     }
 }
