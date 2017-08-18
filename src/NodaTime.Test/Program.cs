@@ -17,9 +17,9 @@ namespace NodaTime.Test
                 .Select(zone => zone is CachedDateTimeZone cached ? cached.TimeZone : zone)
                 .ToList();
             var start = Instant.FromUtc(2000, 1, 1, 0, 0);
-            var gap = Duration.FromDays(1);
+            var gap = Duration.FromHours(1);
             var instants = Enumerable
-                .Range(0, 50000)
+                .Range(0, 100000)
                 .Select(index => start + gap * index)
                 .ToList();
             
