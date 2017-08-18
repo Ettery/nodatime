@@ -30,7 +30,7 @@ namespace NodaTime.Test.TimeZones
             }
 
             string id = TzdbDateTimeZoneSource.Default.GuessZoneIdByTransitionsUncached(bclZone);
-
+/*
             // Unmappable zones may not be mapped, or may be mapped to something reasonably accurate.
             // We don't mind either way.
             if (!TzdbDateTimeZoneSource.Default.WindowsMapping.PrimaryMapping.ContainsKey(bclZone.Id))
@@ -75,6 +75,7 @@ namespace NodaTime.Test.TimeZones
                 bclZone.Id,
                 id,
                 lastIncorrectDate, lastIncorrectBclOffset, lastIncorrectTzdbOffset);
+ */
         }
     }
 }
